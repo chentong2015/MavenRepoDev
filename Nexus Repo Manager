@@ -1,0 +1,23 @@
+Sonatype Nexus Repository Manager 远程仓库管理器
+http://repo-dev/nexus/
+https://nexus3.onap.org/#browse/search
+
+测试自定义的配置文件
+>mvn -s mvn-dev-settings.xml -DuseDevMavenRepo
+
+使用mvn deploy部署到指定的repo server & 或者在nexus手动上传jar
+>mvn deploy
+Adding the needed repository to your pom and adding the credentials to your settings.xml
+
+<repository>
+  <id>nexus-murex-internal-snapshot</id>
+  <url>http://repo-dev/nexus/content/repositories/murex.internal.snapshot/</url>
+</repository>
+
+<servers>
+  <server>
+    <id>nexus-murex-internal-snapshot</id>
+    <username>Dev</username>
+    <password>maven</password>
+  </server>
+</servers>
