@@ -1,0 +1,54 @@
+<settings>
+    <pluginGroups>
+        <pluginGroup>ctong.maven.plugins</pluginGroup>
+    </pluginGroups>
+    
+    <mirrors>
+        <mirror>
+            <mirrorOf>central</mirrorOf>
+            <id>publicGroupProxy</id>
+            <name>Proximity mirrored central repository in group public</name>
+            <url>https://xxx/content/groups/public</url>
+        </mirror>
+	</mirrors>
+	
+	<profiles>
+		<profile>
+			<id>CT-artifacts</id>
+			<activation>
+				<property>
+					<name>useCTArtifactsMavenRepo</name>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>CT-artifacts</id>
+					<name>CT-artifacts</name>
+					<url>http://xxx/content/groups/CT-artifacts/</url>
+					<layout>default</layout>
+					<releases>
+						<updatePolicy>always</updatePolicy>
+					</releases>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>CT-artifacts-plugin</id>
+					<url>http://xxx/content/groups/CT-artifacts/</url>
+					<releases>
+						<updatePolicy>always</updatePolicy>
+					</releases>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+		
+    </profiles>
+	
+	<servers>
+		<server>
+			<id>deploy-server</id>
+			<username>${deploy.username}</username>
+			<password>${deploy.password}</password>
+		</server>
+	</servers>
+</settings>

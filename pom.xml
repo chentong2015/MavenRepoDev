@@ -8,11 +8,6 @@
     <artifactId>MavenRepoDev</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
-
     <!-- 依赖会从settings.xml配置中设置的repository仓库下载
          并且放置到配置的repository本地存储库 -->
     <dependencies>
@@ -22,4 +17,96 @@
             <version>4.18.0</version>
         </dependency>
     </dependencies>
+
+    <!-- TODO. 配置要Deploy部署到的远程资源库 -->
+    <distributionManagement>
+        <!-- <repository>
+            <id>nexus-murex-internal-snapshot</id>
+            <url>http://localhost:8081/nexus/content/repositories/internal.snapshot/</url>
+        </repository> -->
+
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://localhost:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+                <configuration>
+                    <target>17</target>
+                    <source>17</source>
+                    <release>17</release>
+                </configuration>
+            </plugin>
+
+            <!-- 以下的插件能够满足通常的部署需求 -->
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.0</version>
+                <!-- 可以选择忽略这个插件的作用 -->
+                <configuration>
+                   <skip>true</skip>
+                </configuration>
+
+                <!-- 配置在指定的phase阶段执行部署 -->
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+
+                    <execution>
+                        <id>deploy-bom</id>
+                        <goals>
+                            <goal>deploy-file</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <file>target/MavenNexusRepo-${project.version}.jar</file>
+                            <groupId>org.example</groupId>
+                            <artifactId>MavenNexusRepo</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <url>file://${project.basedir}/target/plugin-lib</url>
+                        </configuration>
+                    </execution>
+                </executions>
+             </plugin>
+
+            <!-- TODO. 这里的版本必须超过1.6.13; 否则会抛出以下错误
+                  Failed to execute goal org.sonatype.plugins:nexus-staging-maven-plugin:1.5.1:deploy
+             以下的插件能够利用到Nexus提供所有部署的功能
+             There are some broken internal dependencies in the library
+             Updating nexus-staging-maven-plugin to 1.6.13
+             Do not need staging functionality in a simple deployment of -SNAPSHOT artifacts to Nexus -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.13</version>
+                <executions>
+                    <execution>
+                        <id>default-deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <serverId>nexus</serverId>
+                    <nexusUrl>http://localhost:8081/nexus/</nexusUrl>
+                     <skipStaging>true</skipStaging>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
