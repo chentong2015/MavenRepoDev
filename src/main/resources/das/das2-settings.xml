@@ -1,0 +1,131 @@
+<settings>
+    <proxies>
+        <proxy>
+            <active>true</active>
+            <protocol>http</protocol>
+            <host>proxy</host>
+            <port>3128</port>
+            <nonProxyHosts>das-lx-java|ci-mid|callisto|nexus|repo-dev</nonProxyHosts>
+        </proxy>
+        <proxy>
+            <active>true</active>
+            <protocol>https</protocol>
+            <host>proxy</host>
+            <port>3128</port>
+            <nonProxyHosts>ci-mid|callisto|nexus|repo-dev</nonProxyHosts>
+        </proxy>
+    </proxies>
+
+    <mirrors>
+        <mirror>
+            <mirrorOf>central</mirrorOf>
+            <id>publicGroupProxy</id>
+            <name>Proximity mirrored central repository in group public</name>
+            <url>http://callisto:8080/nexus/content/groups/public</url>
+        </mirror>
+    </mirrors>
+
+    <profiles>
+        <profile>
+            <id>default-repositories</id>
+            <repositories>
+                <repository>
+                    <id>internal-releases</id>
+                    <name>ctong internal releases repository</name>
+                    <url>http://nexus/nexus/content/repositories/ctong-components-releases/</url>
+                </repository>
+
+                <repository>
+                    <id>internal-snapshots</id>
+                    <name>ctong internal snapshots repository</name>
+                    <url>http://nexus/nexus/content/repositories/ctong-components-snapshots/</url>
+                </repository>
+
+                <repository>
+                    <id>nexus-ctong</id>
+                    <url>http://callisto:8080/nexus/content/groups/ctong</url>
+                </repository>
+
+                <repository>
+                    <id>nexus-public</id>
+                    <url>http://callisto:8080/nexus/content/groups/public</url>
+                </repository>
+
+                <repository>
+                    <id>nexus-firstretry</id>
+                    <url>http://callisto:8080/nexus/content/groups/firstretry</url>
+                </repository>
+
+                <repository>
+                    <id>repo-public</id>
+                    <url>http://repo-dev/nexus/content/groups/public</url>
+                </repository>
+            </repositories>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>internal-releases</id>
+                    <name>ctong internal releases repository</name>
+                    <url>http://nexus/nexus/content/repositories/ctong-components-releases/</url>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>internal-snapshots</id>
+                    <name>ctong internal snapshots repository</name>
+                    <url>http://nexus/nexus/content/repositories/ctong-components-snapshots/</url>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>nexus-ctong</id>
+                    <url>http://callisto:8080/nexus/content/groups/ctong</url>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>nexus-public</id>
+                    <url>http://callisto:8080/nexus/content/groups/public</url>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>nexus-firstretry</id>
+                    <url>http://callisto:8080/nexus/content/groups/firstretry</url>
+                </pluginRepository>
+
+                <pluginRepository>
+                    <id>repo-nexus-firstretry</id>
+                    <url>http://repo-dev/nexus/content/groups/firstretry</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <servers>
+        <server>
+            <id>callisto</id>
+            <configuration>
+                <timeout>6000</timeout> <!-- milliseconds -->
+            </configuration>
+        </server>
+
+        <server>
+            <id>repo-dev</id>
+            <username>Dev</username>
+            <password>maven</password>
+        </server>
+
+        <server>
+            <id>ctong-components-snapshots</id>
+            <username>${deployer-das.username}</username>
+            <password>${deployer-das.password}</password>
+        </server>
+
+        <server>
+            <id>ctong-components-releases</id>
+            <username>${deployer-das.username}</username>
+            <password>${deployer-das.password}</password>
+        </server>
+    </servers>
+
+    <activeProfiles>
+        <activeProfile>default-repositories</activeProfile>
+    </activeProfiles>
+</settings>

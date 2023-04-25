@@ -1,31 +1,20 @@
 <settings>
     <pluginGroups>
-        <pluginGroup>murex.maven.plugins</pluginGroup>
+        <pluginGroup>ctong.maven.plugins</pluginGroup>
     </pluginGroups>
     
     <mirrors>
-        <!--
-        <mirror>
-            <id>mirror</id>
-            <name>Mirror for not referenced reporitories below</name>
-            <mirrorOf>*,!production-public-repository,!production-murex-repository,
-			!production-public-plugin-repository,!production-murex-plugin-repository,
-			!development-public-repository,!development-murex-repository,!development-murex-plugin-repository,
-			!development-public-plugin-repository</mirrorOf>
-            <url>https://pandora.fr.murex.com/content/groups/public</url>
-        </mirror>
-        -->
         <mirror>
             <mirrorOf>central</mirrorOf>
             <id>publicGroupProxy</id>
             <name>Proximity mirrored central repository in group public</name>
-            <url>https://pandora.fr.murex.com/content/groups/public</url>
+            <url>https://pandora.fr.ctong.com/content/groups/public</url>
         </mirror>
 		<mirror>
             <mirrorOf>jboss-public-repository-group</mirrorOf>
             <id>jbossProxy</id>
             <name>Proximity mirrored jboss repository in group public</name>
-            <url>https://pandora.fr.murex.com/content/groups/public/</url>
+            <url>https://pandora.fr.ctong.com/content/groups/public/</url>
         </mirror>
 		<mirror>
             <id>releases-java-net-http-blocker</id>
@@ -63,8 +52,7 @@
 			<blocked>true</blocked>
 		</mirror>
 	</mirrors>
-	
-	
+
 	<profiles>
 		<profile>
 			<id>production-repositories</id>
@@ -73,25 +61,26 @@
 			</activation>
 			<repositories>
 				<repository>
-					<id>production-murex-repository</id>
-					<url>https://pandora.fr.murex.com/content/groups/murex</url>
+					<id>production-ctong-repository</id>
+					<url>https://pandora.fr.ctong.com/content/groups/ctong</url>
 				</repository>
 				<repository>
 					<id>production-public-repository</id>
-					<url>https://pandora.fr.murex.com/content/groups/public</url>
+					<url>https://pandora.fr.ctong.com/content/groups/public</url>
 				</repository>
 			</repositories>
 			<pluginRepositories>
 				<pluginRepository>
-					<id>production-murex-repository</id>
-					<url>https://pandora.fr.murex.com/content/groups/murex</url>
+					<id>production-ctong-repository</id>
+					<url>https://pandora.fr.ctong.com/content/groups/ctong</url>
 				</pluginRepository>
 				<pluginRepository>
 					<id>production-public-repository</id>
-					<url>https://pandora.fr.murex.com/content/groups/public</url>
+					<url>https://pandora.fr.ctong.com/content/groups/public</url>
 				</pluginRepository>
 			</pluginRepositories>
 		</profile>
+
 		<profile>
 			<id>development-repositories</id>
 			<activation>
@@ -101,8 +90,8 @@
 			</activation>
 			<repositories>
 				<repository>
-					<id>development-murex-repository</id>
-					<url>http://repo-dev/nexus/content/groups/murex</url>
+					<id>development-ctong-repository</id>
+					<url>http://repo-dev/nexus/content/groups/ctong</url>
 				</repository>
 				<repository>
 					<id>development-public-repository</id>
@@ -111,8 +100,8 @@
 			</repositories>
 			<pluginRepositories>
 				<pluginRepository>
-					<id>development-murex-repository</id>
-					<url>http://repo-dev/nexus/content/groups/murex</url>
+					<id>development-ctong-repository</id>
+					<url>http://repo-dev/nexus/content/groups/ctong</url>
 				</pluginRepository>
 				<pluginRepository>
 					<id>development-public-repository</id>
@@ -120,6 +109,7 @@
 				</pluginRepository>
 			</pluginRepositories>
 		</profile>
+
 		<profile>
             <id>staging-repositories</id>
             <activation>
@@ -129,37 +119,38 @@
             </activation>
             <repositories>
                 <repository>
-                    <id>nexus-murex</id>
-                    <url>https://pandora.fr.murex.com/content/groups/pre-prod-staging</url>
+                    <id>nexus-ctong</id>
+                    <url>https://pandora.fr.ctong.com/content/groups/pre-prod-staging</url>
                 </repository>
                 <repository>
                     <id>nexus-public</id>
-                    <url>https://pandora.fr.murex.com/content/groups/public</url>
+                    <url>https://pandora.fr.ctong.com/content/groups/public</url>
                 </repository>
                 <repository>
                     <id>nexus-firstretry</id>
-                    <url>https://pandora.fr.murex.com/content/groups/firstretry</url>
+                    <url>https://pandora.fr.ctong.com/content/groups/firstretry</url>
                 </repository>
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
-                    <id>nexus-murex-plugin</id>
-                    <url>https://pandora.fr.murex.com/content/groups/murex</url>
+                    <id>nexus-ctong-plugin</id>
+                    <url>https://pandora.fr.ctong.com/content/groups/ctong</url>
                 </pluginRepository>
                 <pluginRepository>
                     <id>nexus-public</id>
-                    <url>https://pandora.fr.murex.com/content/groups/public</url>
+                    <url>https://pandora.fr.ctong.com/content/groups/public</url>
                 </pluginRepository>
                 <pluginRepository>
                     <id>nexus-firstretry</id>
-                    <url>https://pandora.fr.murex.com/content/groups/firstretry</url>
+                    <url>https://pandora.fr.ctong.com/content/groups/firstretry</url>
                 </pluginRepository>
                 <pluginRepository>
-                    <id>nexus-murex</id>
-                    <url>https://pandora.fr.murex.com/content/groups/pre-prod-staging</url>
+                    <id>nexus-ctong</id>
+                    <url>https://pandora.fr.ctong.com/content/groups/pre-prod-staging</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
+
 		<profile>
 			<id>onyx</id>
 			<activation>
@@ -187,6 +178,7 @@
 				</pluginRepository>			
 			</pluginRepositories>
 		</profile>
+
 		<profile>
 			<id>mx-artifacts</id>
 			<activation>
@@ -215,6 +207,7 @@
 				</pluginRepository>
 			</pluginRepositories>
 		</profile>
+
 		<profile>
             <id>bpm-only-jars</id>
             <activation>
@@ -225,18 +218,17 @@
             <repositories>
                 <repository>
                     <id>production-nexus-bpm-3p</id>
-                    <url>https://pandora.fr.murex.com/content/repositories/bpm.3p/</url>
+                    <url>https://pandora.fr.ctong.com/content/repositories/bpm.3p/</url>
                 </repository>
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
                     <id>production-nexus-bpm-3p</id>
-                    <url>https://pandora.fr.murex.com/content/repositories/bpm.3p/</url>
+                    <url>https://pandora.fr.ctong.com/content/repositories/bpm.3p/</url>
                 </pluginRepository>
             </pluginRepositories>
         </profile>
     </profiles>
-
 	
 	<servers>
 		<server>

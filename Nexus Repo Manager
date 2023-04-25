@@ -1,12 +1,8 @@
 Sonatype Nexus Repository Manager 远程仓库管理器
-Create our own internal library dependencies / create a local Nexus repository
-http://repo-dev/nexus/
-https://nexus3.onap.org/#browse/search
+Create our own internal library dependencies, create a local Nexus repository
 
 测试自定义的配置文件
 >mvn -s mvn-dev-settings.xml -DuseDevMavenRepo
 
-使用mvn deploy部署到指定的repo server & 或者在nexus手动上传jar
+使用mvn deploy部署到指定的repo server
 >mvn clean deploy (deploy会执行项目package生命周期)
-
-

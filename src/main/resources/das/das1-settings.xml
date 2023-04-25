@@ -1,0 +1,118 @@
+<settings>
+
+ <pluginGroups>
+    <pluginGroup>ctong.maven.plugins</pluginGroup>
+  </pluginGroups>
+
+  <mirrors>
+     <mirror>
+         <mirrorOf>central</mirrorOf>
+         <id>publicGroupProxy</id>
+         <name>Proximity mirrored central repository in group public</name>
+         <url>http://callisto:8080/nexus/content/groups/public</url>
+     </mirror>
+  </mirrors>
+
+  <profiles>
+      <!-- TODO. 不同profile配置的repositories资源库不同 -->
+      <profile><id>default-repositories</id>
+          <!-- 激活方式: 如果构建时没有设置该属性，则该profile被激活
+                       如果设置，则可以设置使用指定的maven repo local本地仓库
+                       > maven -DuseDevMavenRepo -Dmaven.repo.local=D:\... -->
+          <activation>
+              <property>
+                  <name>!useDevMavenRepo</name>
+              </property>
+          </activation>
+          <repositories>
+              <repository>
+                  <id>nexus-ctong</id>
+                  <url>http://callisto:8080/nexus/content/groups/ctong</url>
+              </repository>
+              <repository>
+                  <id>nexus-public</id>
+                  <url>http://callisto:8080/nexus/content/groups/public</url>
+              </repository>
+              <repository>
+                  <id>nexus-firstretry</id>
+                  <url>http://callisto:8080/nexus/content/groups/firstretry</url>
+              </repository>
+          </repositories>
+          <pluginRepositories>
+              <pluginRepository>
+                  <id>nexus-ctong-plugin</id>
+                  <url>http://callisto:8080/nexus/content/groups/ctong</url>
+              </pluginRepository>
+              <pluginRepository>
+                  <id>nexus-plugin-plugin</id>
+                  <url>http://callisto:8080/nexus/content/groups/public</url>
+              </pluginRepository>
+              <pluginRepository>
+                  <id>nexus-firstretry</id>
+                  <url>http://callisto:8080/nexus/content/groups/firstretry</url>
+              </pluginRepository>
+          </pluginRepositories>
+      </profile>
+
+      <profile>
+          <id>dev-repositories</id>
+          <!-- 当使用系统属性时，将会激活该dev-repositories profile
+             mvn -DuseDevMavenRepo help:active-profiles -->
+          <activation>
+                   <property>
+                   <name>useDevMavenRepo</name>
+                   </property>
+          </activation>
+          <repositories>
+                  <repository>
+                          <id>repo-ctong-internal-snapshot</id>
+                          <url>http://repo-dev/nexus/content/groups/snapshot/ctong.internal.snapshot/</url>
+                  </repository>
+                  <repository>
+                          <id>repo-ctong</id>
+                          <url>http://repo-dev/nexus/content/groups/ctong</url>
+                  </repository>
+                  <repository>
+                          <id>repo-public</id>
+                          <url>http://repo-dev/nexus/content/groups/public</url>
+                  </repository>
+                  <repository>
+                          <id>nexus-ctong</id>
+                          <url>http://callisto:8080/nexus/content/groups/ctong</url>
+                  </repository>
+                  <repository>
+                          <id>nexus-public</id>
+                          <url>http://callisto:8080/nexus/content/groups/public</url>
+                  </repository>
+                  <repository>
+                          <id>nexus-firstretry</id>
+                          <url>http://callisto:8080/nexus/content/groups/firstretry</url>
+                  </repository>
+          </repositories>
+          <pluginRepositories>
+              <pluginRepository>
+                  <id>repo-nexus-firstretry</id>
+                  <url>http://repo-dev/nexus/content/groups/firstretry</url>
+              </pluginRepository>
+              <pluginRepository>
+                  <id>ctong-callisto-plugin</id>
+                  <url>http://callisto:8080/nexus/content/groups/ctong</url>
+              </pluginRepository>
+              <pluginRepository>
+                  <id>public-callisto-plugin</id>
+                  <url>http://callisto:8080/nexus/content/groups/public</url>
+              </pluginRepository>
+          </pluginRepositories>
+      </profile>
+  </profiles>
+
+<servers>
+    <server>
+      <id>callisto</id>
+      <configuration>
+        <timeout>6000</timeout> <!-- milliseconds -->
+      </configuration>
+    </server>
+  </servers>
+
+</settings>
