@@ -98,6 +98,7 @@
         </profile>
     </profiles>
 
+    <!-- TODO. 根据不同的Server需要配置不同的登录信息 -->
     <servers>
         <server>
             <id>callisto</id>
