@@ -8,6 +8,15 @@
     <artifactId>MavenRepoDev</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- 配置从指定的仓库下载Artifacts依赖 -->
+    <repositories>
+        <repository>
+            <id>dev-public-repository</id>
+            <name>Nexus maven public</name>
+            <url>http://localhost:8081/repository/maven-public</url>
+        </repository>
+    </repositories>
+
     <!-- 依赖会从settings.xml配置中设置的repository仓库下载
          并且放置到配置的repository本地存储库 -->
     <dependencies>
@@ -22,8 +31,14 @@
     <distributionManagement>
         <!-- <repository>
             <id>nexus-murex-internal-snapshot</id>
+            <name>Nexus maven public</name>
+            <url>http://localhost:8081/repository/maven-public</url>
+        </repository>
+
+        <repository>
+            <id>nexus-murex-internal-snapshot</id>
             <url>http://localhost:8081/nexus/content/repositories/internal.snapshot/</url>
-        </repository> -->
+        </repository>-->
 
         <snapshotRepository>
             <id>nexus-snapshots</id>

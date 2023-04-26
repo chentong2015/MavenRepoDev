@@ -1,0 +1,8 @@
+Sonatype Nexus Repository Manager 远程仓库管理器
+login: admin
+password: admin123
+
+Create our own internal library dependencies, create a local Nexus repository
+>mvn -s dev-settings.xml -DuseDevMavenRepo
+>mvn -gs global-settings.xml -DuseNexusDevRepo
+>mvn clean deploy 部署到指定Nexus Repo(deploy会执行项目package生命周期)

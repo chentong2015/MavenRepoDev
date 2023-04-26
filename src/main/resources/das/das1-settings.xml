@@ -17,8 +17,8 @@
       <!-- TODO. 不同profile配置的repositories资源库不同 -->
       <profile><id>default-repositories</id>
           <!-- 激活方式: 如果构建时没有设置该属性，则该profile被激活
-                       如果设置，则可以设置使用指定的maven repo local本地仓库
-                       > maven -DuseDevMavenRepo -Dmaven.repo.local=D:\... -->
+            如果设置，则可以设置使用指定的maven repo local本地仓库
+            > maven -DuseDevMavenRepo -Dmaven.repo.local=D:\... -->
           <activation>
               <property>
                   <name>!useDevMavenRepo</name>
